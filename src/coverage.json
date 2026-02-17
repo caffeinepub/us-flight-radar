@@ -1,0 +1,241 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T02:17:12.969Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 7,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create an interactive flight-radar-style map view that displays aircraft tracks/positions across the continental United States, with pan/zoom and a radar-like visual overlay.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/package.json",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/components/radar/RadarOverlay.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a map preset that quickly centers/zooms to the Schenectady, New York to Albany, New York corridor, while still allowing users to switch back to a full-US view.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/radar/MapPresetsControl.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/radar/MapPresetsControl.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement aircraft data ingestion to display live (or near-live) aircraft positions and track lines, sourced from a configurable REST endpoint. Store the configured endpoint and optional API key in the Motoko backend so it can be updated without redeploying the frontend.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAircraftTracks.ts",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useAircraftTracks.ts",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Enable selecting/tapping an aircraft marker to view details including its category: general aviation, military, or commercial.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/utils/aircraftCategory.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+          "frontend/src/components/radar/RadarMap.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/utils/aircraftCategory.ts"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Add filtering controls to show/hide aircraft by category (general aviation, military, commercial) and reflect the filter state in the map results.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/radar/CategoryFilters.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/components/radar/RadarMap.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/radar/CategoryFilters.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx",
+          "frontend/src/components/radar/RadarMap.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Define and apply a coherent visual theme for the app (colors, typography, layout) that fits a “radar console” aesthetic (avoid blue/purple as primary colors), and enforce it consistently across the UI.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Add generated static image assets required for the radar-console look, and render them from the frontend as static assets (do not serve images through the backend).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/radar-bg.dim_1920x1080.png",
+          "frontend/src/components/radar/RadarOverlay.tsx",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/radar-bg.dim_1920x1080.png",
+          "frontend/src/pages/FlightRadarDashboard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/http-outcalls/outcall.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/radar-bg.dim_1920x1080.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/LoginButton.tsx",
+    "frontend/src/components/ProfileSetupDialog.tsx",
+    "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+    "frontend/src/components/radar/CategoryFilters.tsx",
+    "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+    "frontend/src/components/radar/MapPresetsControl.tsx",
+    "frontend/src/components/radar/RadarMap.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAircraftTracks.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/FlightRadarDashboard.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/aircraftCategory.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

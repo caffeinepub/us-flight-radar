@@ -1,2 +1,3 @@
-# us-flight-radar
-Exported from Caffeine project: US Flight Radar
+## US Flight Radar
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

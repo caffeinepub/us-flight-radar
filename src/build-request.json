@@ -1,0 +1,143 @@
+{
+  "kind": "build_request",
+  "title": "Interactive US Flight Radar Map with Aircraft Type Filters",
+  "projectName": "US Flight Radar",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create an interactive flight-radar-style map view that displays aircraft tracks/positions across the continental United States, with pan/zoom and a radar-like visual overlay.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Build a slight radar track of the tracks aircraft in the United States."
+        ]
+      },
+      "acceptanceCriteria": [
+        "App loads to a map-focused dashboard view",
+        "Map supports pan/zoom over the continental United States",
+        "A radar-style overlay (grid/sweep aesthetic) is visible without obscuring markers"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a map preset that quickly centers/zooms to the Schenectady, New York to Albany, New York corridor, while still allowing users to switch back to a full-US view.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "have a flight radar or so a map from Schenectady, New York to Albany, New York, and throughout the whole continent of the United States."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A control exists to jump to a Schenectady↔Albany preset view",
+        "A control exists to return to a full-US (continental) view",
+        "Preset changes update map center/zoom reliably"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement aircraft data ingestion to display live (or near-live) aircraft positions and track lines, sourced from a configurable REST endpoint. Store the configured endpoint and optional API key in the Motoko backend so it can be updated without redeploying the frontend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Build a slight radar track of the tracks aircraft in the United States."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend requests aircraft position data from a single app-controlled configuration (not hardcoded in UI components)",
+        "Backend exposes methods to read/update the aircraft data provider configuration (endpoint URL and optional API key)",
+        "When valid data is available, aircraft markers appear on the map and update on a refresh interval"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Enable selecting/tapping an aircraft marker to view details including its category: general aviation, military, or commercial.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "You can see and push on what kind of aircraft is is a general aviation, military or commercial"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking/tapping an aircraft marker opens a details panel or popup",
+        "The details view shows the aircraft category as one of: General Aviation, Military, Commercial",
+        "Selection state is clearly indicated on the map"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add filtering controls to show/hide aircraft by category (general aviation, military, commercial) and reflect the filter state in the map results.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "what kind of aircraft is is a general aviation, military or commercial"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can toggle categories on/off",
+        "Map updates immediately to reflect selected categories",
+        "If all categories are disabled, map shows no aircraft markers and an empty-state message"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Define and apply a coherent visual theme for the app (colors, typography, layout) that fits a “radar console” aesthetic (avoid blue/purple as primary colors), and enforce it consistently across the UI.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses a consistent radar-console theme across headers, controls, panels, and map overlay",
+        "Primary palette is not blue/purple",
+        "Typography and spacing are consistent across main screens"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add generated static image assets required for the radar-console look, and render them from the frontend as static assets (do not serve images through the backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated",
+        "Frontend references these assets directly (static file paths)",
+        "Radar overlay/background image is visibly used in the UI"
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not modify files under frontend/src/components/ui or other immutable paths specified by the platform."
+  ],
+  "nonGoals": [
+    "Implementing real-time streaming via WebSockets or push updates.",
+    "Integrating third-party authentication providers other than Internet Identity.",
+    "Guaranteeing global (non-US) coverage beyond the continental United States."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Subtle radar screen background with grid, sweep glow, and noise texture in dark green/charcoal (radar-bg.dim_1920x1080.png)"
+    ],
+    "edits": []
+  }
+}

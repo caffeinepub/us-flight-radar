@@ -1,0 +1,214 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Interactive US Flight Radar Map with Aircraft Type Filters",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement a map-first radar dashboard with pan/zoom across the continental US and a non-obscuring radar-style overlay.",
+      "acceptanceCriteria": [
+        "App loads to a map-focused dashboard view",
+        "Map supports pan/zoom over the continental United States",
+        "A radar-style overlay (grid/sweep aesthetic) is visible without obscuring markers"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add required mapping dependencies (e.g., Leaflet + React bindings) and ensure the build includes any needed styles for interactive pan/zoom mapping."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the app to load a map-focused dashboard view as the primary UI shell, ensuring the map is the main content area."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "create",
+          "description": "Create the main dashboard page with a map container, top control bar (presets/filters), and a details area for selected aircraft."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarMap.tsx",
+          "operation": "create",
+          "description": "Create an interactive map component (pan/zoom, US bounds defaults) that renders aircraft markers and track polylines."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarOverlay.tsx",
+          "operation": "create",
+          "description": "Implement a radar-like overlay layer (grid/sweep aesthetic) that sits above the map but does not obscure aircraft markers; use the generated background asset. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add/adjust global styles needed for the map container sizing and the radar overlay stacking so the overlay is visible without blocking interactions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add quick-view presets for Schenectady↔Albany corridor and for full continental US, with reliable center/zoom changes.",
+      "acceptanceCriteria": [
+        "A control exists to jump to a Schenectady↔Albany preset view",
+        "A control exists to return to a full-US (continental) view",
+        "Preset changes update map center/zoom reliably"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/radar/MapPresetsControl.tsx",
+          "operation": "create",
+          "description": "Create preset controls for (1) Schenectady↔Albany corridor and (2) full continental US, emitting target view state to the map. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarMap.tsx",
+          "operation": "modify",
+          "description": "Accept preset view commands (center/zoom or bounds) from the UI and apply them reliably while keeping manual pan/zoom enabled."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Wire the MapPresetsControl into the dashboard and connect it to the RadarMap so preset changes update the map view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Fetch near-live aircraft positions/tracks based on an app-controlled provider configuration (read from backend), and refresh on an interval.",
+      "acceptanceCriteria": [
+        "Frontend requests aircraft position data from a single app-controlled configuration (not hardcoded in UI components)",
+        "Backend exposes methods to read/update the aircraft data provider configuration (endpoint URL and optional API key)",
+        "When valid data is available, aircraft markers appear on the map and update on a refresh interval"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAircraftTracks.ts",
+          "operation": "create",
+          "description": "Implement a React Query-powered hook that (a) reads provider configuration via the backend actor (e.g., getApiUrl) and (b) polls for track/position data via backend capabilities on a refresh interval, returning normalized aircraft + track history for rendering."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarMap.tsx",
+          "operation": "modify",
+          "description": "Consume the aircraft/track data from useAircraftTracks and render markers and track lines; ensure updates apply smoothly on refresh."
+        },
+        {
+          "path": "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+          "operation": "create",
+          "description": "Add a small settings dialog to view/update the configured provider URL via backend capabilities (e.g., getApiUrl/setApiUrl) without hardcoding values in map components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Wire the data hook into the dashboard, show loading/error states, and include access to the provider settings dialog (e.g., via a settings button in the control bar)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Allow selecting an aircraft marker to view details including category (General Aviation, Military, Commercial) with clear selection state.",
+      "acceptanceCriteria": [
+        "Clicking/tapping an aircraft marker opens a details panel or popup",
+        "The details view shows the aircraft category as one of: General Aviation, Military, Commercial",
+        "Selection state is clearly indicated on the map"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+          "operation": "create",
+          "description": "Create a details panel (or popup) that displays the selected aircraft’s identifier and category (General Aviation/Military/Commercial) and any available telemetry (e.g., altitude, last update time). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarMap.tsx",
+          "operation": "modify",
+          "description": "Add marker interaction to set the selected aircraft, visually differentiate the selected marker/track, and notify the parent dashboard of selection changes."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Maintain selection state, render AircraftDetailsPanel when a marker is selected, and ensure selection is clearly reflected in both map and panel."
+        },
+        {
+          "path": "frontend/src/utils/aircraftCategory.ts",
+          "operation": "create",
+          "description": "Add a utility to derive/normalize aircraft category into exactly one of: General Aviation, Military, Commercial (including sensible fallback when the data source does not provide a category)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add category filter controls that immediately update map results and show an empty-state when all categories are disabled.",
+      "acceptanceCriteria": [
+        "User can toggle categories on/off",
+        "Map updates immediately to reflect selected categories",
+        "If all categories are disabled, map shows no aircraft markers and an empty-state message"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/radar/CategoryFilters.tsx",
+          "operation": "create",
+          "description": "Create UI toggles for General Aviation, Military, Commercial with clear on/off states. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Store filter state, pass it to RadarMap rendering, and show an empty-state message overlay when all categories are disabled."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarMap.tsx",
+          "operation": "modify",
+          "description": "Filter rendered markers/tracks based on the active category toggles and update immediately when toggles change."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Apply a consistent radar-console theme (non-blue/purple primary) across the UI including controls, panels, and overlay.",
+      "acceptanceCriteria": [
+        "UI uses a consistent radar-console theme across headers, controls, panels, and map overlay",
+        "Primary palette is not blue/purple",
+        "Typography and spacing are consistent across main screens"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define/update global CSS variables and base styles for a radar-console palette (charcoal/dark green/amber accents), consistent typography, and spacing across the app."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme tokens (colors/radius/shadows as needed) to align with the radar-console aesthetic while avoiding blue/purple as primary colors."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Apply the theme consistently to the dashboard layout: header/control bar, panels, empty states, and map overlay framing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add and reference generated static radar-console image assets directly from the frontend (no backend image serving).",
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated",
+        "Frontend references these assets directly (static file paths)",
+        "Radar overlay/background image is visibly used in the UI"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/radar-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated static asset at the exact path frontend/public/assets/generated/radar-bg.dim_1920x1080.png so it can be referenced directly by the frontend."
+        },
+        {
+          "path": "frontend/src/components/radar/RadarOverlay.tsx",
+          "operation": "modify",
+          "description": "Reference and render the generated background image frontend/public/assets/generated/radar-bg.dim_1920x1080.png as part of the radar overlay/background presentation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/FlightRadarDashboard.tsx",
+          "operation": "modify",
+          "description": "Ensure the radar background/overlay is visibly present in the main dashboard view and layered correctly with the map and UI controls."
+        }
+      ]
+    }
+  ]
+}

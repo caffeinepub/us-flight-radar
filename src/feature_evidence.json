@@ -1,0 +1,160 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-an-interactive-flight-radar-style-map-view-that-displays-aircraft-tracks-positions-across-the-continental-united-states-with-pan-zoom-and-a-radar-like-visual-overlay",
+      "featureTitle": "Create an interactive flight-radar-style map view that displays aircraft tracks/positions across the continental United States, with pan/zoom and a radar-like visual overlay.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/radar/RadarMap.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/FlightRadarDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-map-preset-that-quickly-centers-zooms-to-the-schenectady-new-york-to-albany-new-york-corridor-while-still-allowing-users-to-switch-back-to-a-full-us-view",
+      "featureTitle": "Add a map preset that quickly centers/zooms to the Schenectady, New York to Albany, New York corridor, while still allowing users to switch back to a full-US view.",
+      "files": [
+        "frontend/src/components/radar/MapPresetsControl.tsx",
+        "frontend/src/components/radar/RadarMap.tsx",
+        "frontend/src/pages/FlightRadarDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-aircraft-data-ingestion-to-display-live-or-near-live-aircraft-positions-and-track-lines-sourced-from-a-configurable-rest-endpoint-store-the-configured-endpoint-and-optional-api-key-in-the-motoko-backend-so-it-can-be-updated-without-redeploying-the-frontend",
+      "featureTitle": "Implement aircraft data ingestion to display live (or near-live) aircraft positions and track lines, sourced from a configurable REST endpoint. Store the configured endpoint and optional API key in the Motoko backend so it can be updated without redeploying the frontend.",
+      "files": [
+        "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+        "frontend/src/components/radar/RadarMap.tsx",
+        "frontend/src/hooks/useAircraftTracks.ts",
+        "frontend/src/pages/FlightRadarDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enable-selecting-tapping-an-aircraft-marker-to-view-details-including-its-category-general-aviation-military-or-commercial",
+      "featureTitle": "Enable selecting/tapping an aircraft marker to view details including its category: general aviation, military, or commercial.",
+      "files": [
+        "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+        "frontend/src/components/radar/RadarMap.tsx",
+        "frontend/src/pages/FlightRadarDashboard.tsx",
+        "frontend/src/utils/aircraftCategory.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-filtering-controls-to-show-hide-aircraft-by-category-general-aviation-military-commercial-and-reflect-the-filter-state-in-the-map-results",
+      "featureTitle": "Add filtering controls to show/hide aircraft by category (general aviation, military, commercial) and reflect the filter state in the map results.",
+      "files": [
+        "frontend/src/components/radar/CategoryFilters.tsx",
+        "frontend/src/components/radar/RadarMap.tsx",
+        "frontend/src/pages/FlightRadarDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-define-and-apply-a-coherent-visual-theme-for-the-app-colors-typography-layout-that-fits-a-radar-console-aesthetic-avoid-blue-purple-as-primary-colors-and-enforce-it-consistently-across-the-ui",
+      "featureTitle": "Define and apply a coherent visual theme for the app (colors, typography, layout) that fits a “radar console” aesthetic (avoid blue/purple as primary colors), and enforce it consistently across the UI.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/FlightRadarDashboard.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-image-assets-required-for-the-radar-console-look-and-render-them-from-the-frontend-as-static-assets-do-not-serve-images-through-the-backend",
+      "featureTitle": "Add generated static image assets required for the radar-console look, and render them from the frontend as static assets (do not serve images through the backend).",
+      "files": [
+        "frontend/src/pages/FlightRadarDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

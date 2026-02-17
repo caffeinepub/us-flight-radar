@@ -1,0 +1,17 @@
+{
+  "frontend/src/App.tsx": "Main application component that handles authentication flow, profile setup, and renders the flight radar dashboard.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profiles, API URL configuration, and track history management.",
+  "frontend/src/hooks/useAircraftTracks.ts": "Custom hook that fetches and normalizes aircraft data from the OpenSky Network API with automatic refresh every 10 seconds.",
+  "frontend/src/pages/FlightRadarDashboard.tsx": "Main dashboard page with header, map, category filters, presets, and aircraft details panel with radar console theme.",
+  "frontend/src/components/radar/RadarMap.tsx": "Custom interactive map component built without external dependencies using canvas tiles, pan/zoom controls, and aircraft markers with rotation.",
+  "frontend/src/components/radar/CategoryFilters.tsx": "Toggle buttons for filtering aircraft by category (Commercial, Military, General Aviation) with distinct colors.",
+  "frontend/src/components/radar/MapPresetsControl.tsx": "Preset buttons to quickly switch between Continental US and Schenectady-Albany corridor views.",
+  "frontend/src/components/radar/AircraftDetailsPanel.tsx": "Floating panel that displays detailed information about the selected aircraft including telemetry and category.",
+  "frontend/src/components/radar/DataProviderSettingsDialog.tsx": "Admin dialog for configuring the aircraft data API endpoint URL.",
+  "frontend/src/components/ProfileSetupDialog.tsx": "Modal dialog that prompts new users to enter their name on first login, removed invalid hideClose prop.",
+  "frontend/src/components/LoginButton.tsx": "Authentication button component that handles Internet Identity login/logout with loading states.",
+  "frontend/src/index.css": "Global styles with radar console theme using OKLCH colors (charcoal/green/amber palette), Leaflet overrides, and custom utilities.",
+  "frontend/tailwind.config.js": "Tailwind configuration with radar-specific color tokens, Inter font family, and extended theme for the console aesthetic.",
+  "frontend/src/utils/aircraftCategory.ts": "Utility function to derive aircraft category from OpenSky Network category codes.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentity, and Toaster providers for the React app."
+}

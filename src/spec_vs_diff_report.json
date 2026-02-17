@@ -1,0 +1,94 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T02:17:12.966Z",
+  "summary": "The diff implements a map-focused radar dashboard with pan/zoom, presets (US + Schenectady/Albany), category filtering with empty state, aircraft selection with a details panel showing category, and backend-stored API URL configuration. However, several requirements lack evidence: optional API key storage, track line rendering, and the required generated radar background image assets being added/used.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Create an interactive flight-radar-style map view that displays aircraft tracks/positions across the continental United States, with pan/zoom and a radar-like visual overlay.",
+      "reason": "While pan/zoom and markers are evidenced, there is no clear evidence of rendering aircraft track lines (historical paths) and no clear evidence of a radar-style overlay (grid/sweep) being rendered on top of the map (RadarMap implementation is truncated and no overlay asset usage is shown).",
+      "evidence": [
+        "frontend/src/components/radar/RadarMap.tsx (truncated)",
+        "frontend/src/hooks/useAircraftTracks.ts",
+        "frontend/src/pages/FlightRadarDashboard.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Store the configured endpoint and optional API key in the Motoko backend so it can be updated without redeploying the frontend; backend exposes methods to read/update endpoint URL and optional API key.",
+      "reason": "Backend configuration only includes an API URL (setApiUrl/getApiUrl). No API key storage or read/update methods are shown, and the frontend fetch does not include any API key handling.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useAircraftTracks.ts",
+        "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Add generated static image assets required for the radar-console look under frontend/public/assets/generated and reference them directly from the frontend; radar overlay/background image is visibly used in the UI.",
+      "reason": "No added files under frontend/public/assets/generated are shown, and no frontend code references a static image path like /assets/generated/radar-bg.dim_1920x1080.png. (Some added files were omitted due to limits, so this cannot be confirmed as implemented.)",
+      "evidence": [
+        "frontend/src/pages/FlightRadarDashboard.tsx (truncated)",
+        "frontend/src/components/radar/RadarMap.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile creation/storage and profile setup gating before accessing the dashboard.",
+      "reason": "The BuildRequest does not request user profiles or requiring a user name before using the app.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/ProfileSetupDialog.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Access control/authorization system with admin/user permissions and secret-based initialization via URL parameter.",
+      "reason": "The BuildRequest does not request role-based access control, admin tokens, or secret initialization flows; it only constrains auth non-goals (no third-party auth beyond Internet Identity).",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/utils/urlParams.ts (truncated)"
+      ]
+    },
+    {
+      "description": "Backend track history storage and related query/clear/process methods (getTrackHistory, getAllTrackHistories, clearAllTrackHistories, processAircraftData).",
+      "reason": "The BuildRequest asks to display tracks/positions sourced from a configurable REST endpoint, but does not request persisting/querying historical track history via backend APIs nor an admin-only ingestion method taking blobs.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    }
+  ],
+  "confidence": 0.68,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/LoginButton.tsx",
+    "frontend/src/components/ProfileSetupDialog.tsx",
+    "frontend/src/components/radar/AircraftDetailsPanel.tsx",
+    "frontend/src/components/radar/CategoryFilters.tsx",
+    "frontend/src/components/radar/DataProviderSettingsDialog.tsx",
+    "frontend/src/components/radar/MapPresetsControl.tsx",
+    "frontend/src/components/radar/RadarMap.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAircraftTracks.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/FlightRadarDashboard.tsx",
+    "frontend/src/utils/aircraftCategory.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

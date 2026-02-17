@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a lightweight flight radar app to track aircraft across the United States, with an interactive map (including a Schenectady, NY to Albany, NY view) and aircraft type categorization (general aviation, military, commercial).",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Subtle radar screen background with grid, sweep glow, and noise texture in dark green/charcoal (radar-bg.dim_1920x1080.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-an-interactive-flight-radar-style-map-view-that-displays-aircraft-tracks-positions-across-the-continental-united-states-with-pan-zoom-and-a-radar-like-visual-overlay",
+      "title": "Create an interactive flight-radar-style map view that displays aircraft tracks/positions across the continental United States, with pan/zoom and a radar-like visual overlay.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-map-preset-that-quickly-centers-zooms-to-the-schenectady-new-york-to-albany-new-york-corridor-while-still-allowing-users-to-switch-back-to-a-full-us-view",
+      "title": "Add a map preset that quickly centers/zooms to the Schenectady, New York to Albany, New York corridor, while still allowing users to switch back to a full-US view.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-aircraft-data-ingestion-to-display-live-or-near-live-aircraft-positions-and-track-lines-sourced-from-a-configurable-rest-endpoint-store-the-configured-endpoint-and-optional-api-key-in-the-motoko-backend-so-it-can-be-updated-without-redeploying-the-frontend",
+      "title": "Implement aircraft data ingestion to display live (or near-live) aircraft positions and track lines, sourced from a configurable REST endpoint. Store the configured endpoint and optional API key in the Motoko backend so it can be updated without redeploying the frontend.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-selecting-tapping-an-aircraft-marker-to-view-details-including-its-category-general-aviation-military-or-commercial",
+      "title": "Enable selecting/tapping an aircraft marker to view details including its category: general aviation, military, or commercial.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-filtering-controls-to-show-hide-aircraft-by-category-general-aviation-military-commercial-and-reflect-the-filter-state-in-the-map-results",
+      "title": "Add filtering controls to show/hide aircraft by category (general aviation, military, commercial) and reflect the filter state in the map results.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-define-and-apply-a-coherent-visual-theme-for-the-app-colors-typography-layout-that-fits-a-radar-console-aesthetic-avoid-blue-purple-as-primary-colors-and-enforce-it-consistently-across-the-ui",
+      "title": "Define and apply a coherent visual theme for the app (colors, typography, layout) that fits a “radar console” aesthetic (avoid blue/purple as primary colors), and enforce it consistently across the UI.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-required-for-the-radar-console-look-and-render-them-from-the-frontend-as-static-assets-do-not-serve-images-through-the-backend",
+      "title": "Add generated static image assets required for the radar-console look, and render them from the frontend as static assets (do not serve images through the backend).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Interactive map-based flight radar view to track aircraft across the United States",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Aircraft type categorization and tap/select UI to view whether an aircraft is general aviation, military, or commercial",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Map view presets/coverage for Schenectady, NY to Albany, NY corridor plus full US continent coverage",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "US Flight Radar",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
